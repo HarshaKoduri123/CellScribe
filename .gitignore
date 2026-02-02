@@ -1,0 +1,22 @@
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Caches and Python internals
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Datasets (Prevents uploading large data files)
+dataset/
+
+
+# Weights & Biases (W&B)
+wandb/
+
+output/
+
+

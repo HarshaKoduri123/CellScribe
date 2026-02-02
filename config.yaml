@@ -1,0 +1,86 @@
+# =========================
+# Model Configuration
+# =========================
+model:
+  name: "cellwhisperer"
+  transcriptome_backbone: "geneformer"
+  text_backbone: "dmis-lab/biobert-v1.1"
+  projection_dim: 2048
+  locking_mode: "LU"
+  transcriptome_dim: 512
+  text_dim: 768
+  dropout: 0.1
+  temperature: 0.07
+
+# =========================
+# Training Configuration
+# =========================
+training:
+  batch_size: 32
+  num_epochs: 16
+  learning_rate: 1e-5
+  text_lr: 1e-5
+  transcriptome_lr: 1e-6
+  weight_decay: 0.01
+  warmup_epochs: 0.48
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  fp16: false
+  device: "cuda"
+
+# =========================
+# Dataset Configuration
+# =========================
+# =========================
+# Dataset Configuration
+# =========================
+dataset:
+  name: "cellwhisperer_dataset"
+  root_dir: "C:/Users/PRASANTH/CellScribe/dataset"
+  splits:
+    train: "train"
+    val: "val"
+    test: "test"
+
+  num_workers: 8
+  pin_memory: true
+  shuffle: true
+  nproc: 4
+
+# =========================
+# Transcriptome Processing
+# =========================
+data:
+  transcriptome:
+    processor_type: "geneformer"
+    max_genes: 2048
+    normalize: true
+    log_transform: true
+    target_sum: 10000
+    min_cells: 250
+    hvg: false
+
+  text:
+    max_length: 128
+    truncation: true
+    padding: "max_length"
+
+# =========================
+# Evaluation
+# =========================
+evaluation:
+  retrieval_metrics: ["recall@1", "recall@5", "recall@10", "mAP"]
+  umap_n_neighbors: 15
+  umap_min_dist: 0.1
+
+# =========================
+# Logging & Checkpointing
+# =========================
+logging:
+  output_dir: "./outputs"
+  save_dir: "./outputs/checkpoints"
+  log_interval: 10
+  eval_interval: 100
+  save_interval: 1000
+  wandb_project: "cellwhisperer"
+  wandb_entity: null

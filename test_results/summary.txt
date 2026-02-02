@@ -1,0 +1,48 @@
+================================================================================
+CELLWHISPERER TEST RESULTS WITH UMAP VISUALIZATION
+================================================================================
+
+Checkpoint: ./output/checkpoint_epoch0_step25.pt
+Test data: Synthetic
+Samples: 200
+Clusters: 10
+Timestamp: 2026-02-02 11:23:44
+
+Retrieval Metrics:
+----------------------------------------
+            recall@1: 0.0000
+            recall@5: 0.0000
+           recall@10: 0.0000
+                 mAP: 0.0000
+              AP_std: 0.0000
+   average_precision: 0.0000
+
+Visualization Files:
+----------------------------------------
+Transcriptome UMAP: test_results\umap_transcriptome.png
+Text UMAP: test_results\umap_text.png
+Joint UMAP: test_results\umap_joint.png
+
+Example Retrievals:
+----------------------------------------
+
+Query 0:
+  Text: Enterocyte cell in brain. Condition: inflamed. Sample ID: 0...
+  Top retrievals:
+    [1] no Neuron cell in liver. Condition: healthy. Sample ID: 44... (sim=-0.0096)
+    [2] no Enterocyte cell in brain. Condition: healthy. Sample ID: 60... (sim=-0.0098)
+    [3] no Neuron cell in intestine. Condition: healthy. Sample ID: 54... (sim=-0.0099)
+
+Query 1:
+  Text: T Cell cell in lung. Condition: healthy. Sample ID: 1...
+  Top retrievals:
+    [1] no Neuron cell in liver. Condition: healthy. Sample ID: 44... (sim=-0.0095)
+    [2] no Enterocyte cell in brain. Condition: healthy. Sample ID: 60... (sim=-0.0096)
+    [3] no Neuron cell in intestine. Condition: healthy. Sample ID: 54... (sim=-0.0098)
+
+Query 2:
+  Text: B Cell cell in lung. Condition: control. Sample ID: 2...
+  Top retrievals:
+    [1] no Neuron cell in liver. Condition: healthy. Sample ID: 44... (sim=-0.0099)
+    [2] no Enterocyte cell in brain. Condition: healthy. Sample ID: 60... (sim=-0.0099)
+    [3] no Neuron cell in intestine. Condition: healthy. Sample ID: 54... (sim=-0.0101)

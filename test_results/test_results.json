@@ -1,0 +1,345 @@
+{
+  "metrics": {
+    "recall@1": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mAP": 0.0,
+    "AP_std": 0.0,
+    "average_precision": 0.0
+  },
+  "config": {
+    "model": {
+      "name": "cellwhisperer",
+      "transcriptome_backbone": "geneformer",
+      "text_backbone": "dmis-lab/biobert-v1.1",
+      "projection_dim": 2048,
+      "locking_mode": "LU",
+      "adapter_layers": 2,
+      "hidden_size": 768,
+      "dropout": 0.1,
+      "temperature": 0.07
+    },
+    "training": {
+      "batch_size": 32,
+      "num_epochs": 16,
+      "warmup_epochs": 0.48,
+      "learning_rate": 1e-05,
+      "weight_decay": 0.01,
+      "gradient_accumulation_steps": 1,
+      "max_grad_norm": 1.0,
+      "fp16": false
+    },
+    "data": {
+      "transcriptome": {
+        "max_genes": 2048,
+        "min_cells": 250,
+        "normalize": true,
+        "log_transform": true,
+        "hvg": false
+      },
+      "text": {
+        "max_length": 128,
+        "truncation": true,
+        "padding": "max_length"
+      }
+    },
+    "dataset": {
+      "name": "cellwhisperer_dataset",
+      "cache_dir": "./data/cache",
+      "num_workers": 8,
+      "pin_memory": true,
+      "shuffle": true
+    },
+    "evaluation": {
+      "retrieval_metrics": [
+        "recall@1",
+        "recall@5",
+        "recall@10",
+        "mAP"
+      ],
+      "umap_n_neighbors": 15,
+      "umap_min_dist": 0.1
+    },
+    "logging": {
+      "wandb_project": "cellwhisperer",
+      "wandb_entity": null,
+      "save_dir": "./checkpoints",
+      "log_interval": 10,
+      "eval_interval": 100,
+      "save_interval": 1000
+    },
+    "testing": {
+      "checkpoint_path": "r\"C:\\Users\\PRASANTH\\CellScribe\\output\\checkpoint_epoch0_step25.pt\"",
+      "output_dir": "./test_results",
+      "device": "cuda",
+      "batch_size": 32
+    }
+  },
+  "checkpoint": "./output/checkpoint_epoch0_step25.pt",
+  "test_data_info": {
+    "n_samples": 200,
+    "data_source": "synthetic",
+    "n_clusters": 10,
+    "cell_types": [
+      "Enterocyte",
+      "T Cell",
+      "B Cell",
+      "Macrophage",
+      "Neuron",
+      "Hepatocyte",
+      "Fibroblast",
+      "Endothelial",
+      "Epithelial",
+      "Stem Cell"
+    ]
+  },
+  "embeddings_info": {
+    "transcriptome_shape": [
+      200,
+      2048
+    ],
+    "text_shape": [
+      200,
+      2048
+    ],
+    "embedding_dim": 2048
+  },
+  "example_retrievals": [
+    {
+      "query_idx": 0,
+      "query_text": "Enterocyte cell in brain. Condition: inflamed. Sample ID: 0",
+      "retrievals": [
+        {
+          "rank": 1,
+          "retrieval_idx": "44",
+          "retrieval_text": "Neuron cell in liver. Condition: healthy. Sample ID: 44",
+          "similarity": -0.009639793075621128,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 2,
+          "retrieval_idx": "60",
+          "retrieval_text": "Enterocyte cell in brain. Condition: healthy. Sample ID: 60",
+          "similarity": -0.00978232640773058,
+          "is_correct": "False",
+          "label_match": "True"
+        },
+        {
+          "rank": 3,
+          "retrieval_idx": "54",
+          "retrieval_text": "Neuron cell in intestine. Condition: healthy. Sample ID: 54",
+          "similarity": -0.009943836368620396,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 4,
+          "retrieval_idx": "115",
+          "retrieval_text": "Hepatocyte cell in lung. Condition: healthy. Sample ID: 115",
+          "similarity": -0.01063662301748991,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 5,
+          "retrieval_idx": "34",
+          "retrieval_text": "Neuron cell in brain. Condition: healthy. Sample ID: 34",
+          "similarity": -0.010776108130812645,
+          "is_correct": "False",
+          "label_match": "False"
+        }
+      ]
+    },
+    {
+      "query_idx": 1,
+      "query_text": "T Cell cell in lung. Condition: healthy. Sample ID: 1",
+      "retrievals": [
+        {
+          "rank": 1,
+          "retrieval_idx": "44",
+          "retrieval_text": "Neuron cell in liver. Condition: healthy. Sample ID: 44",
+          "similarity": -0.009499719366431236,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 2,
+          "retrieval_idx": "60",
+          "retrieval_text": "Enterocyte cell in brain. Condition: healthy. Sample ID: 60",
+          "similarity": -0.009594939649105072,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 3,
+          "retrieval_idx": "54",
+          "retrieval_text": "Neuron cell in intestine. Condition: healthy. Sample ID: 54",
+          "similarity": -0.00975637324154377,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 4,
+          "retrieval_idx": "115",
+          "retrieval_text": "Hepatocyte cell in lung. Condition: healthy. Sample ID: 115",
+          "similarity": -0.010446211323142052,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 5,
+          "retrieval_idx": "34",
+          "retrieval_text": "Neuron cell in brain. Condition: healthy. Sample ID: 34",
+          "similarity": -0.010594017803668976,
+          "is_correct": "False",
+          "label_match": "False"
+        }
+      ]
+    },
+    {
+      "query_idx": 2,
+      "query_text": "B Cell cell in lung. Condition: control. Sample ID: 2",
+      "retrievals": [
+        {
+          "rank": 1,
+          "retrieval_idx": "44",
+          "retrieval_text": "Neuron cell in liver. Condition: healthy. Sample ID: 44",
+          "similarity": -0.009870946407318115,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 2,
+          "retrieval_idx": "60",
+          "retrieval_text": "Enterocyte cell in brain. Condition: healthy. Sample ID: 60",
+          "similarity": -0.00989364180713892,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 3,
+          "retrieval_idx": "54",
+          "retrieval_text": "Neuron cell in intestine. Condition: healthy. Sample ID: 54",
+          "similarity": -0.01013034675270319,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 4,
+          "retrieval_idx": "115",
+          "retrieval_text": "Hepatocyte cell in lung. Condition: healthy. Sample ID: 115",
+          "similarity": -0.010831465944647789,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 5,
+          "retrieval_idx": "63",
+          "retrieval_text": "Macrophage cell in brain. Condition: healthy. Sample ID: 63",
+          "similarity": -0.01098625734448433,
+          "is_correct": "False",
+          "label_match": "False"
+        }
+      ]
+    },
+    {
+      "query_idx": 3,
+      "query_text": "Macrophage cell in heart. Condition: healthy. Sample ID: 3",
+      "retrievals": [
+        {
+          "rank": 1,
+          "retrieval_idx": "44",
+          "retrieval_text": "Neuron cell in liver. Condition: healthy. Sample ID: 44",
+          "similarity": -0.009847251698374748,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 2,
+          "retrieval_idx": "60",
+          "retrieval_text": "Enterocyte cell in brain. Condition: healthy. Sample ID: 60",
+          "similarity": -0.009904364123940468,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 3,
+          "retrieval_idx": "54",
+          "retrieval_text": "Neuron cell in intestine. Condition: healthy. Sample ID: 54",
+          "similarity": -0.010100089944899082,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 4,
+          "retrieval_idx": "115",
+          "retrieval_text": "Hepatocyte cell in lung. Condition: healthy. Sample ID: 115",
+          "similarity": -0.010812059044837952,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 5,
+          "retrieval_idx": "34",
+          "retrieval_text": "Neuron cell in brain. Condition: healthy. Sample ID: 34",
+          "similarity": -0.010956291109323502,
+          "is_correct": "False",
+          "label_match": "False"
+        }
+      ]
+    },
+    {
+      "query_idx": 4,
+      "query_text": "Neuron cell in liver. Condition: treated. Sample ID: 4",
+      "retrievals": [
+        {
+          "rank": 1,
+          "retrieval_idx": "44",
+          "retrieval_text": "Neuron cell in liver. Condition: healthy. Sample ID: 44",
+          "similarity": -0.009547945111989975,
+          "is_correct": "False",
+          "label_match": "True"
+        },
+        {
+          "rank": 2,
+          "retrieval_idx": "60",
+          "retrieval_text": "Enterocyte cell in brain. Condition: healthy. Sample ID: 60",
+          "similarity": -0.009684987366199493,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 3,
+          "retrieval_idx": "54",
+          "retrieval_text": "Neuron cell in intestine. Condition: healthy. Sample ID: 54",
+          "similarity": -0.00985744409263134,
+          "is_correct": "False",
+          "label_match": "True"
+        },
+        {
+          "rank": 4,
+          "retrieval_idx": "115",
+          "retrieval_text": "Hepatocyte cell in lung. Condition: healthy. Sample ID: 115",
+          "similarity": -0.010525374673306942,
+          "is_correct": "False",
+          "label_match": "False"
+        },
+        {
+          "rank": 5,
+          "retrieval_idx": "34",
+          "retrieval_text": "Neuron cell in brain. Condition: healthy. Sample ID: 34",
+          "similarity": -0.010676832869648933,
+          "is_correct": "False",
+          "label_match": "True"
+        }
+      ]
+    }
+  ],
+  "visualization_files": {
+    "transcriptome_umap": "test_results\\umap_transcriptome.png",
+    "text_umap": "test_results\\umap_text.png",
+    "joint_umap": "test_results\\umap_joint.png"
+  },
+  "timestamp": "2026-02-02T11:23:44.274336"
+}
