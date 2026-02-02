@@ -1,6 +1,6 @@
 #  CellScribe  
 **A Multimodal Single-Cell Representation and Reasoning Framework**  
-*Inspired by CellWhisperer*
+*Inspired from CellWhisperer*
 
 ---
 
